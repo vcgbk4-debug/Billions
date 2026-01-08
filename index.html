@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Billions Player</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e50914">
+
+<style>
+body {
+  background: #111;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 15px;
+}
+
+h2 {
+  margin: 15px 0;
+  font-size: 32px;
+}
+
+#epNome {
+  margin: 10px 0 15px 0;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+#playerContainer {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 15px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px #e50914;
+  position: relative;
+}
+
+iframe {
+  width: 100%;
+  height: 55vw;
+  max-height: 600px;
+  border: none;
+  display: block;
+}
+
+#noEp {
+  position: absolute;
+  inset: 0;
+  background: #111;
+  color: #e50914;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.controls, .seasonButtons {
+  margin: 15px 0;
+}
+
+button {
+  background: #e50914;
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  margin: 6px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+#progress {
+  width: 100%;
+  max-width: 1000px;
+  height: 20px;
+  background: #333;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 15px auto;
+}
+
+#progressBar {
+  height: 100%;
+  background: #e50914;
+  width: 0%;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Billions</h2>
+<div id="epNome"></div>
+
+<div id="playerContainer">
+  <iframe
+    id="player"
+    allow="autoplay; encrypted-media; fullscreen"
+    allowfullscreen>
+  </iframe>
+  <div id="noEp">Episódio indisponível 😔</div>
+</div>
+
+<div class="controls">
+  <button onclick="anterior()">◀ Anterior</button>
+  <button onclick="proximo()">Próximo ▶</button>
+</div>
+
+<div class="seasonButtons">
+  <button onclick="mudarTemp(2)">Temporada 2</button>
+  <button onclick="mudarTemp(3)">Temporada 3</button>
+  <button onclick="mudarTemp(4)">Temporada 4</button>
+  <button onclick="mudarTemp(5)">Temporada 5</button>
+</div>
+
+<div id="progress">
+  <div id="progressBar"></div>
+</div>
+
+<script>
+const SERIE = "BLIONST";
+const SERVER = "https://redecanais.bh/player3/server.php?server=RCServer06&subfolder=ondemand&vid=";
+
+// Episódios por temporada
+const epPorTemp = {
+  2: 12,
+  3: 12,
+  4: 12,
+  5: 12
+};
+
+let temporada = Number(localStorage.getItem("temporada")) || 2;
+let episodio  = Number(localStorage.getItem("episodio"))  || 1;
+
+const player = document.getElementById("player");
+const epNome = document.getElementById("epNome");
+const progressBar = document.getElementById("progressBar");
+const noEp = document.getElementById("noEp");
+
+function carregar() {
+  const t = String(temporada).padStart(2, "0");
+  const ep = String(episodio).padStart(2, "0");
+
+  if (!epPorTemp[temporada] || episodio > epPorTemp[temporada]) {
+    player.style.display = "none";
+    noEp.style.display = "flex";
+    progressBar.style.width = "100%";
+  } else {
+    noEp.style.display = "none";
+    player.style.display = "block";
+    player.src = `${SERVER}${SERIE}${t}EP${ep}`;
+    progressBar.style.width = (episodio / epPorTemp[temporada] * 100) + "%";
+  }
+
+  epNome.textContent = `Temporada ${temporada} – Episódio ${episodio}`;
+  localStorage.setItem("temporada", temporada);
+  localStorage.setItem("episodio", episodio);
+}
+
+function proximo() {
+  episodio++;
+  if (episodio > epPorTemp[temporada]) {
+    temporada++;
+    episodio = 1;
+    if (!epPorTemp[temporada]) {
+      temporada--;
+      episodio = epPorTemp[temporada];
+    }
+  }
+  carregar();
+}
+
+function anterior() {
+  episodio--;
+  if (episodio < 1) {
+    if (temporada > 2) {
+      temporada--;
+      episodio = epPorTemp[temporada];
+    } else {
+      episodio = 1;
+    }
+  }
+  carregar();
+}
+
+function mudarTemp(t) {
+  temporada = t;
+  episodio = 1;
+  carregar();
+}
+
+carregar();
+</script>
+
+</body>
+</html>

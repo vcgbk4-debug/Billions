@@ -1,0 +1,16 @@
+{
+  "name": "Billions Player",
+  "short_name": "Billions",
+  "start_url": "https://vcgbk4-debug.github.io/Billions-2/",
+  "scope": "https://vcgbk4-debug.github.io/Billions-2/",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#e50914",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
