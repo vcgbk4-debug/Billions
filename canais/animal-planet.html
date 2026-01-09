@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Animal Planet • SK Play</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e50914">
+
+<link rel="icon" type="image/png" sizes="512x512" href="../icon-512.png">
+
+<style>
+  body {
+    margin: 0;
+    padding: 15px;
+    background: #111;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+
+  h1 {
+    margin-bottom: 15px;
+    font-size: 26px;
+  }
+
+  .player-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 0 25px #e50914;
+  }
+
+  iframe {
+    width: 100%;
+    height: 56vw;
+    max-height: 560px;
+    border: none;
+  }
+
+  .info {
+    margin-top: 12px;
+    font-size: 15px;
+    color: #ccc;
+  }
+
+  .back {
+    margin-top: 20px;
+  }
+
+  button {
+    background: #e50914;
+    color: #fff;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+</style>
+</head>
+<body>
+
+<h1>Animal Planet</h1>
+
+<div class="player-container">
+  <iframe 
+    src="//redecanaistv.bh/player3/ch.php?canal=animalplanet"
+    allow="encrypted-media"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<div class="info">
+  Transmissão ao vivo • SK Play
+</div>
+
+<div class="back">
+  <button onclick="window.location.href='../canais.html'">
+    ⬅ Voltar para Canais
+  </button>
+</div>
+
+</body>
+</html>
