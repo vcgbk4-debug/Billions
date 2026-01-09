@@ -5,108 +5,105 @@
 <title>Billions</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#e50914">
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="../manifest.json">
 
-<!-- Favicon -->
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="icon" type="image/png" sizes="512x512" href="../icon-512.png">
 
 <style>
-  body {
-    background: #111;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 15px;
-  }
+body {
+  background:#111;
+  color:#fff;
+  font-family:Arial, sans-serif;
+  text-align:center;
+  margin:0;
+  padding:15px;
+}
 
-  h2 {
-    margin: 15px 0;
-    font-size: 32px;
-  }
+h2 {
+  margin:15px 0;
+  font-size:32px;
+}
 
-  #epNome {
-    margin: 10px 0 15px 0;
-    font-size: 22px;
-    font-weight: bold;
-  }
+#epNome {
+  margin:10px 0 15px 0;
+  font-size:22px;
+  font-weight:bold;
+}
 
-  #playerContainer {
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto 15px auto;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 20px #e50914;
-    position: relative;
-  }
+#playerContainer {
+  width:100%;
+  max-width:1000px;
+  margin:0 auto 15px auto;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 0 20px #e50914;
+  position:relative;
+}
 
-  iframe {
-    width: 100%;
-    height: 55vw;
-    max-height: 600px;
-    border: none;
-    display: block;
-  }
+iframe {
+  width:100%;
+  height:55vw;
+  max-height:600px;
+  border:none;
+}
 
-  #noEp {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background: #111;
-    color: #e50914;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    font-weight: bold;
-    display: none;
-  }
+#noEp {
+  position:absolute;
+  inset:0;
+  background:#111;
+  color:#e50914;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  font-weight:bold;
+}
 
-  .controls, .seasonButtons {
-    margin: 15px 0;
-  }
+.controls, .seasonButtons {
+  margin:15px 0;
+}
 
-  button {
-    background: #e50914;
-    color: white;
-    border: none;
-    padding: 14px 24px;
-    margin: 6px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.2s;
-  }
+button {
+  background:#e50914;
+  color:white;
+  border:none;
+  padding:14px 24px;
+  margin:6px;
+  border-radius:8px;
+  font-size:16px;
+  cursor:pointer;
+  transition:.2s;
+}
 
-  button:hover {
-    opacity: 0.9;
-    transform: scale(1.05);
-  }
+button:hover {
+  opacity:.9;
+  transform:scale(1.05);
+}
 
-  #progress {
-    width: 100%;
-    max-width: 1000px;
-    height: 20px;
-    background: #333;
-    border-radius: 10px;
-    overflow: hidden;
-    margin: 15px auto;
-    box-shadow: 0 0 10px #e50914;
-  }
+#progress {
+  width:100%;
+  max-width:1000px;
+  height:20px;
+  background:#333;
+  border-radius:10px;
+  overflow:hidden;
+  margin:15px auto;
+  box-shadow:0 0 10px #e50914;
+}
 
-  #progressBar {
-    height: 100%;
-    background: #e50914;
-    width: 0%;
-  }
+#progressBar {
+  height:100%;
+  background:#e50914;
+  width:0%;
+}
 </style>
 </head>
 <body>
 
+<button onclick="location.href='../index.html'">⬅ Voltar</button>
+
 <h2>Billions</h2>
-<div id="epNome">Temporada 2 – Episódio 1</div>
+<div id="epNome"></div>
 
 <div id="playerContainer">
   <iframe id="player" allowfullscreen></iframe>
@@ -133,61 +130,121 @@
 const SERIE = "BLIONST";
 const SERVER = "//redecanais.bh/player3/server.php?server=RCServer06&subfolder=ondemand&vid=";
 
-// Quantos episódios tem cada temporada
-const epPorTemp = { 2: 12, 3: 12, 4: 12, 5: 12 };
+/* ===== TEMPORADAS + NOMES ===== */
+const TEMPORADAS = {
+  2: [
+    "Gerenciamento De Risco",
+    "Voo Da Galinha",
+    "Cenário Ideal",
+    "O Juramento",
+    "Uma Questão De Moeda",
+    "Indian 4",
+    "A Volta Da Vitória",
+    "O Criador De Reis",
+    "Sic Transit Imperium",
+    "Com Ou Sem Você",
+    "A Hora Do Sapo-Dourado",
+    "Bola Na Mão"
+  ],
+  3: [
+    "Um Empate Favorece O Corredor",
+    "Não É A Nossa Maria Gonzalez",
+    "Uma Geração Atrasado",
+    "Uma Jornada E Tanto",
+    "Falha Na Estrela Da Morte",
+    "A Terceira Sombria",
+    "Você Não, Sr. Dake",
+    "Todos Os Wilburys Juntos",
+    "Quebra-gelo",
+    "Retirada",
+    "Compenso",
+    "A Contagem Elmsley"
+  ],
+  4: [
+    "A Melhor Jogada de Chucky Rhoades",
+    "Estilo",
+    "Terra das Galinhas",
+    "Janela de Overton",
+    "Um Bom Discurso de Despedida",
+    "Profundidade Máxima Recreacional",
+    "Jogo Infinito",
+    "Noite da Luta",
+    "Campeão Americano",
+    "Dia de Ano-novo",
+    "Foragido",
+    "Caixa de Areia Radical"
+  ],
+  5: [
+    "Os Novos Decas",
+    "O Teste Do Chris Rock",
+    "Suborne, Implore, Intimide",
+    "Zona De Oportunidade",
+    "Contrato",
+    "O Modelo Nórdico",
+    "Merda Sem Limites",
+    "Copenhague",
+    "Implosão",
+    "Liberdade",
+    "Fumaça da Vitória",
+    "Sem Direção para Casa"
+  ]
+};
 
-let temporada = Number(localStorage.getItem("temporada")) || 2;
-let episodio  = Number(localStorage.getItem("episodio"))  || 1;
+let temporada = Number(localStorage.getItem("billions_temp")) || 2;
+let episodio  = Number(localStorage.getItem("billions_ep")) || 1;
 
 const player = document.getElementById("player");
 const epNome = document.getElementById("epNome");
 const progressBar = document.getElementById("progressBar");
 const noEp = document.getElementById("noEp");
 
-// Carrega o episódio
 function carregar() {
+  const lista = TEMPORADAS[temporada];
+  const total = lista?.length || 0;
+
   const t = String(temporada).padStart(2,"0");
   const ep = String(episodio).padStart(2,"0");
 
-  if (!epPorTemp[temporada] || episodio > epPorTemp[temporada]) {
-    player.style.display = "none";
-    noEp.style.display = "flex";
+  if (!lista || episodio > total) {
+    player.style.display="none";
+    noEp.style.display="flex";
     epNome.textContent = `Temporada ${temporada} – Episódio ${episodio}`;
-    progressBar.style.width = "100%";
-  } else {
-    noEp.style.display = "none";
-    player.style.display = "block";
-    player.src = `${SERVER}${SERIE}${t}EP${ep}`;
-    epNome.textContent = `Temporada ${temporada} – Episódio ${episodio}`;
-    progressBar.style.width = (episodio / epPorTemp[temporada] * 100) + "%";
+    progressBar.style.width="100%";
+    return;
   }
 
-  localStorage.setItem("temporada", temporada);
-  localStorage.setItem("episodio", episodio);
+  const nome = lista[episodio - 1];
+
+  player.style.display="block";
+  noEp.style.display="none";
+  player.src = `${SERVER}${SERIE}${t}EP${ep}`;
+
+  epNome.textContent = `Temporada ${temporada} – Episódio ${episodio}: ${nome}`;
+  progressBar.style.width = (episodio / total * 100) + "%";
+
+  localStorage.setItem("billions_temp", temporada);
+  localStorage.setItem("billions_ep", episodio);
 }
 
-// Próximo episódio
 function proximo() {
   episodio++;
-  if (!epPorTemp[temporada] || episodio > epPorTemp[temporada]) {
+  if (episodio > TEMPORADAS[temporada].length) {
     temporada++;
     episodio = 1;
-    if (!epPorTemp[temporada]) {
+    if (!TEMPORADAS[temporada]) {
       temporada--;
-      episodio = epPorTemp[temporada];
-      noEp.style.display = "flex";
+      episodio = TEMPORADAS[temporada].length;
     }
   }
   carregar();
 }
 
-// Episódio anterior
 function anterior() {
   episodio--;
   if (episodio < 1) {
-    if (temporada > 2) {
+    if (TEMPORADAS[temporada - 1]) {
       temporada--;
-      episodio = epPorTemp[temporada];
+      episodio = TEMPORADAS[temporada].length;
     } else {
       episodio = 1;
     }
@@ -195,14 +252,12 @@ function anterior() {
   carregar();
 }
 
-// Mudar temporada
 function mudarTemp(t) {
   temporada = t;
   episodio = 1;
   carregar();
 }
 
-// Inicializa player
 carregar();
 </script>
 
