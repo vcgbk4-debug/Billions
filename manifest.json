@@ -1,11 +1,13 @@
 {
-  "name": "Billions",
-  "short_name": "Billions",
-  "start_url": "https://vcgbk4-debug.github.io/Billions/",
-  "scope": "https://vcgbk4-debug.github.io/Billions/",
+  "name": "SK Play",
+  "short_name": "SK Play",
+  "description": "SK Play - Séries e filmes em um só lugar",
+  "start_url": ".",
+  "scope": ".",
   "display": "standalone",
   "background_color": "#111111",
   "theme_color": "#e50914",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "icon-192.png",
