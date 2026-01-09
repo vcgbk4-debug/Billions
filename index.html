@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>SK Play</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e50914">
+
+<style>
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body {
+  background:#111;
+  color:#fff;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+/* HEADER */
+header {
+  position:fixed;
+  top:0;
+  width:100%;
+  height:70px;
+  display:flex;
+  align-items:center;
+  padding:0 40px;
+  background:linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0));
+  z-index:10;
+}
+
+header img {
+  height:40px;
+}
+
+/* HERO */
+.hero {
+  height:100vh;
+  background:
+    linear-gradient(to top, #111 10%, transparent 60%),
+    url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhQijZocgpBVdI4PN22DSEOp1PuqNy6Ets-Yp9orzvq-O76AXUjcmXNTbOnqyYh8rZTBbigz9KesJqDhc5dyfhJXo8-YYkelHxAOl5fFDrgWvlZxIRxaq0iKhI-fna8cttuWg4pzlQoZnokKZBuBTMFdXi8N9oA4338U6H-9ZIqLRmJ6XZDNU9kyd8-8yQT/s1280/BILLIONS%20S7_BRANDEDSEASONLANDSCAPE16x9.png");
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:flex-end;
+  padding:60px;
+}
+
+.hero-content {
+  max-width:600px;
+}
+
+.hero-content h1 {
+  font-size:52px;
+  margin-bottom:20px;
+}
+
+.hero-content p {
+  font-size:18px;
+  line-height:1.4;
+  margin-bottom:25px;
+  color:#ddd;
+}
+
+.hero-buttons button {
+  background:#e50914;
+  border:none;
+  padding:14px 28px;
+  font-size:16px;
+  border-radius:6px;
+  cursor:pointer;
+  color:#fff;
+  margin-right:12px;
+  transition:.2s;
+}
+
+.hero-buttons button:hover {
+  opacity:0.85;
+}
+
+/* SEÇÕES */
+.section {
+  padding:30px 40px;
+}
+
+.section h2 {
+  margin-bottom:15px;
+}
+
+/* TRILHO */
+.row {
+  display:flex;
+  gap:15px;
+  overflow-x:auto;
+  padding-bottom:10px;
+}
+
+.row::-webkit-scrollbar {
+  display:none;
+}
+
+/* CARD */
+.card {
+  min-width:260px;
+  height:150px;
+  border-radius:10px;
+  background-size:cover;
+  background-position:center;
+  cursor:pointer;
+  transition:.3s;
+  position:relative;
+}
+
+.card::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  border-radius:10px;
+}
+
+.card:hover {
+  transform:scale(1.1);
+  z-index:2;
+}
+
+/* RESPONSIVO */
+@media (max-width:768px) {
+  header {
+    padding:0 20px;
+  }
+
+  .hero {
+    padding:30px;
+  }
+
+  .hero-content h1 {
+    font-size:36px;
+  }
+
+  .card {
+    min-width:220px;
+    height:130px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <img src="https://img.pikbest.com/origin/10/06/53/6pIkbEsTppIkbEsTWtK.png!sw800" alt="SK Play">
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Billions</h1>
+    <p>
+      Poder, dinheiro e influência colidem nesta série intensa
+      sobre o mundo da alta finança e da política.
+    </p>
+
+    <div class="hero-buttons">
+      <button onclick="location.href='series/billions.html'">▶ Assistir</button>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO SÉRIES -->
+<section class="section">
+  <h2>Séries</h2>
+
+  <div class="row">
+    <div class="card"
+      onclick="location.href='series/billions.html'"
+      style="background-image:url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhQijZocgpBVdI4PN22DSEOp1PuqNy6Ets-Yp9orzvq-O76AXUjcmXNTbOnqyYh8rZTBbigz9KesJqDhc5dyfhJXo8-YYkelHxAOl5fFDrgWvlZxIRxaq0iKhI-fna8cttuWg4pzlQoZnokKZBuBTMFdXi8N9oA4338U6H-9ZIqLRmJ6XZDNU9kyd8-8yQT/s1280/BILLIONS%20S7_BRANDEDSEASONLANDSCAPE16x9.png')">
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
